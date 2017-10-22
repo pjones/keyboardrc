@@ -50,28 +50,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `----------------------'
  */
 [L_BASE] = LAYOUT_ergodox(
-        // left hand
-        KC_ESC,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_VOLU,
-        KC_NO,          KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   KC_MNXT,
-        SFT_T(KC_TAB),  KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
-        KC_NO,          KC_Z,         KC_X,   KC_C,   KC_V,   KC_B,   OSL(L_SYMB),
-        KC_NO,          KC_NO,        KC_NO,  KC_NO,  M(M_CALC),
+  // Left Hand:
+  KC_ESC,         KC_1,  KC_2,   KC_3,   KC_4,      KC_5,    KC_VOLU,
+  KC_NO,          KC_Q,  KC_W,   KC_E,   KC_R,      KC_T,    KC_MNXT,
+  SFT_T(KC_TAB),  KC_A,  KC_S,   KC_D,   KC_F,      KC_G,    /* 2U */
+  KC_NO,          KC_Z,  KC_X,   KC_C,   KC_V,      KC_B,    OSL(L_SYMB),
+  KC_NO,          KC_NO, KC_NO,  KC_NO,  M(M_CALC), /* NA */ /* NA */
 
-                                    OSM(MOD_LGUI), OSL(L_MOVEMENT),  
-                                                                 FONT_PLUS,
-                                               KC_BSPC,KC_LCTRL, FONT_MINUS,
+  // Left Thumb Cluster:
+  /* NA */ OSM(MOD_LGUI), OSL(L_MOVEMENT),  
+  /* 2U */ /* 2U */       FONT_PLUS,
+  KC_BSPC, KC_LCTRL,      FONT_MINUS,
 
-        // right hand
-             KC_VOLU,      KC_6,   KC_7,        KC_8,     KC_9,   KC_0,     KC_CAPS,
-             KC_MPLY,      KC_Y,   KC_U,        KC_I,     KC_O,   KC_P,     KC_NO,
-                           KC_H,   KC_J,        KC_K,     KC_L,   KC_SCLN,  SFT_T(KC_ENT),
-          OSL(L_SYMB), KC_N,   KC_M,        KC_COMM,  KC_DOT, KC_SLSH,  KC_NO,
-                                   M(M_PASSWD), KC_NO,    KC_NO,  KC_NO,    KC_NO,
+  // Right Hand:
+  KC_VOLU,     KC_6,      KC_7,        KC_8,     KC_9,   KC_0,     KC_CAPS,
+  KC_MPLY,     KC_Y,      KC_U,        KC_I,     KC_O,   KC_P,     KC_NO,
+  /* 2U */     KC_H,      KC_J,        KC_K,     KC_L,   KC_SCLN,  SFT_T(KC_ENT),
+  OSL(L_SYMB), KC_N,      KC_M,        KC_COMM,  KC_DOT, KC_SLSH,  KC_NO,
+  /* NA */     /* NA */   M(M_PASSWD), KC_NO,    KC_NO,  KC_NO,    KC_NO,
 
-             OSL(L_DRAWING), OSM(MOD_LGUI),
-             KC_NO,
-             KC_NO, KC_RALT, KC_SPC
+  // Right Thumb Cluster:
+  OSL(L_DRAWING), OSM(MOD_LGUI), /* NA */
+  KC_NO,          /* 2U */       /* 2U */
+  KC_NO,          KC_RALT,       KC_SPC
 ),
+
 /* Keymap 1: Symbol Layer
  *
  * ,---------------------------------------------------.           ,--------------------------------------------------.
@@ -94,25 +97,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
 [L_SYMB] = LAYOUT_ergodox(
-       // left hand
-       RESET,   KC_F1,      KC_F2,    KC_F3,    KC_F4,    KC_F5,      KC_TRNS,
-       KC_TILD, KC_BSLASH,  KC_GRAVE, KC_PIPE,  KC_PLUS,  KC_EQUAL,   KC_NO,
-       KC_DQUO, KC_EXLM,    KC_AT,    KC_HASH,  KC_DLR,   KC_PERCENT,
-       KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,    KC_TRNS,
-       KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,  KC_TRNS,
-                                       KC_TRNS, KC_TRNS,
-                                                KC_TRNS,
-                               KC_TRNS,KC_TRNS, KC_TRNS,
-       // right hand
-       KC_TRNS, KC_F6,   KC_F7,    KC_F8,   KC_F9,   KC_F10,  KC_F11,
-       KC_NO,   KC_UNDS, KC_MINUS, KC_TILD, KC_LBRC, KC_RBRC, KC_F12,
-                KC_CIRC, KC_AMPR,  KC_ASTR, KC_LPRN, KC_RPRN, KC_QUOT,
-       KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_LCBR, KC_RCBR, KC_TRNS,
-                         KC_TRNS,  KC_TRNS, KC_LABK, KC_RABK, KC_TRNS,
-       KC_TRNS, KC_TRNS,
-       KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS
+  // Left Hand:
+  RESET,   KC_F1,      KC_F2,    KC_F3,    KC_F4,    KC_F5,      KC_TRNS,
+  KC_TILD, KC_BSLASH,  KC_GRAVE, KC_PIPE,  KC_PLUS,  KC_EQUAL,   KC_NO,
+  KC_DQUO, KC_EXLM,    KC_AT,    KC_HASH,  KC_DLR,   KC_PERCENT, /* 2U */
+  KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,    KC_TRNS,
+  KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,  KC_TRNS,  /* NA */  /* NA */
+
+  // Left Thumb Cluster:
+  /* NA */ KC_TRNS, KC_TRNS,
+  KC_TRNS, /* 2U */ /* 2U */
+  KC_TRNS, KC_TRNS, KC_TRNS,
+  
+  // Right Hand:
+  KC_TRNS, KC_F6,   KC_F7,    KC_F8,   KC_F9,   KC_F10,  KC_F11,
+  KC_NO,   KC_UNDS, KC_MINUS, KC_TILD, KC_LBRC, KC_RBRC, KC_F12,
+  /* 2U */ KC_CIRC, KC_AMPR,  KC_ASTR, KC_LPRN, KC_RPRN, KC_QUOT,
+  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_LCBR, KC_RCBR, KC_TRNS,
+  /* NA */ /* NA */ KC_TRNS,  KC_TRNS, KC_LABK, KC_RABK, KC_TRNS,
+
+  // Right Thumb Cluster:
+  KC_TRNS, KC_TRNS, /* NA */
+  KC_TRNS, /* 2U */ /* 2U */
+  KC_TRNS, KC_TRNS, KC_TRNS
 ),
+
 /* Keymap 2: Movement
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
@@ -135,25 +144,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
 [L_MOVEMENT] = LAYOUT_ergodox(
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                                           KC_TRNS, KC_TRNS,
-                                                    KC_TRNS,
-                                  KC_TRNS, KC_TRNS, KC_TRNS,
-    // right hand
-       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,
-       KC_TRNS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,   KC_TRNS, KC_TRNS,
-                 KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_TRNS, KC_TRNS,
-       KC_TRNS,  KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,  KC_TRNS, KC_TRNS,
-
-                          KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,
-       KC_TRNS, KC_TRNS,
-       KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS
+  // Left Hand:
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, /* 2U */
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, /* NA *? /* NA */
+       
+  // Left Thumb Cluster:
+  /* NA */ KC_TRNS, KC_TRNS,
+  /* 2U */ /* 2U */ KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS,
+  
+  // Right Hand:
+  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,
+  KC_TRNS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,   KC_TRNS, KC_TRNS,
+  /* 2U */  KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_TRNS, KC_TRNS,
+  KC_TRNS,  KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,  KC_TRNS, KC_TRNS,
+  /* NA */  /* NA */ KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,
+  
+  // Right Thumb Cluster:
+  KC_TRNS, KC_TRNS, /* NA */
+  KC_TRNS, /* 2U */ /* 2U */
+  KC_TRNS, KC_TRNS, KC_TRNS
 ),
+
 /* Keymap 3: Drawing
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
@@ -176,24 +191,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `--------------------'
  */
 [L_DRAWING] = LAYOUT_ergodox(
-  // left hand
-       KC_LSHIFT,      KC_A,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LALT(KC_LCTRL),
-       KC_LCTRL,       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       LSFT(KC_LCTRL), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       KC_LALT,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-       LSFT(KC_LALT),  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                                           KC_TRNS, KC_TRNS,
-                                                    KC_TRNS,
-                                  KC_TRNS, KC_TRNS, KC_TRNS,
-    // right hand
-       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F9,
-       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LSFT(KC_F9),
-                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LCTL(KC_F9),
-       KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F10,
-                          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,
-       KC_TRNS, KC_TRNS,
-       KC_TRNS,
-       KC_TRNS, KC_TRNS, KC_TRNS
+  // Left Hand:
+  KC_LSHIFT,      KC_A,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LALT(KC_LCTRL),
+  KC_LCTRL,       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  LSFT(KC_LCTRL), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, /* 2U */
+  KC_LALT,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  LSFT(KC_LALT),  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, /* NA */ /* NA */
+
+  // Left Thumb Cluster:
+  KC_TRNS, KC_TRNS, /* NA */
+  /* 2U */ /* 2U */ KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS,
+
+  // Right Hand:
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F9,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LSFT(KC_F9),
+  /* 2U */ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LCTL(KC_F9),
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F10,
+  /* NA */ /* NA */ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,
+  
+  // Right Thumb Cluster:
+  KC_TRNS, KC_TRNS, /* NA */
+  KC_TRNS, /* 2U */ /* 2U */
+  KC_TRNS, KC_TRNS, KC_TRNS
 ),
 };
 
