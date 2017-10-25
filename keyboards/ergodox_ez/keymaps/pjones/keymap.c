@@ -18,7 +18,9 @@ enum {
   M_TODO,
   M_CALC,
   M_CXB,
-  M_CCR
+  M_CCR,
+  M_SCREEN_PREV,
+  M_SCREEN_NEXT
 };
 
 /******************************************************************************/
@@ -34,12 +36,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | ESC    |   1  |   2  |   3  |   4  |   5  | VDN  |           | VUP  |   6  |   7  |   8  |   9  |   0  |   CAPS |
+ * | ESC    |   1  |   2  |   3  |   4  |   5  |S-s h |           | S-s l|   6  |   7  |   8  |   9  |   0  |   CAPS |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | C-x b  |   Q  |   W  |   E  |   R  |   T  | Next |           | Play |   Y  |   U  |   I  |   O  |   P  | C-c r  |
+ * | C-x b  |   Q  |   W  |   E  |   R  |   T  |  L4  |           |  L4  |   Y  |   U  |   I  |   O  |   P  | C-c r  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | Tab/Sf |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |  ;   | Ent/Sf |
- * |--------+------+------+------+------+------| L1   |           | L1   |------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------|  L1  |           |  L1  |------+------+------+------+------+--------|
  * | Numbers|   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |  /   |Numbers |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |      |      |      |      | CALC |                                       | PASS |      |      |      |      |
@@ -54,28 +56,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [L_BASE] = LAYOUT_ergodox(
   // Left Hand:
-  KC_ESC,         KC_1,  KC_2,   KC_3,   KC_4,      KC_5,    KC_VOLU,
-  M(M_CXB),       KC_Q,  KC_W,   KC_E,   KC_R,      KC_T,    KC_MNXT,
+  KC_ESC,         KC_1,  KC_2,   KC_3,   KC_4,      KC_5,    M(M_SCREEN_PREV),
+  M(M_CXB),       KC_Q,  KC_W,   KC_E,   KC_R,      KC_T,    TT(L_NUMBERS),
   SFT_T(KC_TAB),  KC_A,  KC_S,   KC_D,   KC_F,      KC_G,    /* 2U */
   OSL(L_NUMBERS), KC_Z,  KC_X,   KC_C,   KC_V,      KC_B,    OSL(L_SYMB),
   KC_NO,          KC_NO, KC_NO,  KC_NO,  M(M_CALC), /* NA */ /* NA */
 
   // Left Thumb Cluster:
-  /* NA */ OSM(MOD_LGUI), OSL(L_MOVEMENT),  
+  /* NA */ OSM(MOD_LGUI), TT(L_MOVEMENT),  
   /* 2U */ /* 2U */       FONT_PLUS,
   KC_BSPC, KC_LCTRL,      FONT_MINUS,
 
   // Right Hand:
-  KC_VOLU,     KC_6,      KC_7,        KC_8,     KC_9,   KC_0,     KC_CAPS,
-  KC_MPLY,     KC_Y,      KC_U,        KC_I,     KC_O,   KC_P,     M(M_CCR),
-  /* 2U */     KC_H,      KC_J,        KC_K,     KC_L,   KC_SCLN,  SFT_T(KC_ENT),
-  OSL(L_SYMB), KC_N,      KC_M,        KC_COMM,  KC_DOT, KC_SLSH,  OSL(L_NUMBERS),
-  /* NA */     /* NA */   M(M_PASSWD), KC_NO,    KC_NO,  KC_NO,    KC_NO,
+  M(M_SCREEN_NEXT), KC_6,      KC_7,        KC_8,     KC_9,   KC_0,     KC_CAPS,
+  TT(L_NUMBERS),    KC_Y,      KC_U,        KC_I,     KC_O,   KC_P,     M(M_CCR),
+  /* 2U */          KC_H,      KC_J,        KC_K,     KC_L,   KC_SCLN,  SFT_T(KC_ENT),
+  OSL(L_SYMB),      KC_N,      KC_M,        KC_COMM,  KC_DOT, KC_SLSH,  OSL(L_NUMBERS),
+  /* NA */          /* NA */   M(M_PASSWD), KC_NO,    KC_NO,  KC_NO,    KC_NO,
 
   // Right Thumb Cluster:
-  OSL(L_DRAWING), OSM(MOD_LGUI), /* NA */
-  KC_PGUP,        /* 2U */       /* 2U */
-  KC_PGDN,        KC_RALT,       KC_SPC
+  TT(L_DRAWING), OSM(MOD_LGUI), /* NA */
+  KC_PGUP,       /* 2U */       /* 2U */
+  KC_PGDN,       KC_RALT,       KC_SPC
 ),
 
 /* Keymap 1: Symbol Layer
@@ -280,6 +282,10 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     return MACRODOWN(D(LCTL), T(X), U(LCTL), T(B), END);
   case M_CCR:
     return MACRODOWN(D(LCTL), T(C), U(LCTL), T(R), END);
+  case M_SCREEN_PREV:
+    return MACRODOWN(D(LGUI), T(S), U(LGUI), T(H), END);
+  case M_SCREEN_NEXT:
+    return MACRODOWN(D(LGUI), T(S), U(LGUI), T(L), END);
   };
 
   return MACRO_NONE;
