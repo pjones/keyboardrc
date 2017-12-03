@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [L_BASE] = LAYOUT_ergodox(
   // Left Hand:
   KC_ESC,         KC_1,  KC_2,   KC_3,   KC_4,      KC_5,    M(M_SCREEN_PREV),
-  OSM(MOD_LGUI),  KC_Q,  KC_W,   KC_E,   KC_R,      KC_T,    TT(L_NUMBERS),
+  OSM(MOD_LGUI),  KC_Q,  KC_W,   KC_E,   KC_R,      KC_T,    KC_MPLY,
   SFT_T(KC_TAB),  KC_A,  KC_S,   KC_D,   KC_F,      KC_G,    /* 2U */
   TT(L_NUMBERS),  KC_Z,  KC_X,   KC_C,   KC_V,      KC_B,    OSL(L_SYMB),
   KC_NO,          KC_NO, KC_NO,  KC_NO,  M(M_CALC), /* NA */ /* NA */
@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // Right Hand:
   M(M_SCREEN_NEXT), KC_6,      KC_7,        KC_8,     KC_9,   KC_0,     KC_CAPS,
-  TT(L_NUMBERS),    KC_Y,      KC_U,        KC_I,     KC_O,   KC_P,     OSM(MOD_LGUI),
+  KC_MNXT,          KC_Y,      KC_U,        KC_I,     KC_O,   KC_P,     OSM(MOD_LGUI),
   /* 2U */          KC_H,      KC_J,        KC_K,     KC_L,   KC_SCLN,  SFT_T(KC_ENT),
   OSL(L_SYMB),      KC_N,      KC_M,        KC_COMM,  KC_DOT, KC_SLSH,  TT(L_NUMBERS),
   /* NA */          /* NA */   M(M_PASSWD), KC_NO,    KC_NO,  KC_NO,    KC_NO,
