@@ -19,6 +19,7 @@ enum {
   M_CALC,
   M_CXB,
   M_CCR,
+  M_CX_TICK,
   M_SCREEN_PREV,
   M_SCREEN_NEXT
 };
@@ -45,10 +46,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------| Super|           |Super |------+------+------+------+------+--------|
  * |    (   |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |  /   |    )   |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      | CALC |                                       | PASS |      |      |      |      |
+ *   | DRAW |      |      |      | CALC |                                       | PASS |      |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |C-x b |      |       | DRAW | C-c r|
+ *                                        |C-x b |      |       |C-x ` | C-c r|
  *                                 ,------|------|------|       |------+--------+------.
  *                                 | Bspc |      | F+   |       | PgUp |        | Spc  |
  *                                 |      | Syms |------|       |------|  Nums  |      |
@@ -61,10 +62,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_DQUO,        KC_Q,  KC_W,   KC_E,   KC_R,      KC_T,    KC_MPLY,
   SFT_T(KC_TAB),  KC_A,  KC_S,   KC_D,   KC_F,      KC_G,    /* 2U */
   KC_LPRN,        KC_Z,  KC_X,   KC_C,   KC_V,      KC_B,    OSM(MOD_LGUI),
-  KC_NO,          KC_NO, KC_NO,  KC_NO,  M(M_CALC), /* NA */ /* NA */
+  TT(L_DRAWING),  KC_NO, KC_NO,  KC_NO,  M(M_CALC), /* NA */ /* NA */
 
   // Left Thumb Cluster:
-  /* NA */        M(M_CXB),   TT(L_MOVEMENT),
+  /* NA */        M(M_CXB),   KC_NO,
   /* 2U */        /* 2U */    FONT_PLUS,
   CTL_T(KC_BSPC), K_SYMB, FONT_MINUS,
 
@@ -76,9 +77,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* NA */          /* NA */   M(M_PASSWD), KC_NO,    KC_NO,  KC_NO,    KC_NO,
 
   // Right Thumb Cluster:
-  TT(L_DRAWING), M(M_CCR), /* NA */
-  KC_PGUP,       /* 2U */  /* 2U */
-  KC_PGDN,       K_NUMB,   ALT_T(KC_SPC)
+  M(M_CX_TICK), M(M_CCR), /* NA */
+  KC_PGUP,      /* 2U */  /* 2U */
+  KC_PGDN,      K_NUMB,   ALT_T(KC_SPC)
 ),
 
 /* Numbers Layer
@@ -135,8 +136,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |---------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
  * |         |   \  |   `  |   |  |   +  |   =  |      |           |      |   _  |   -  |   ~  |   [  |   ]  |   F12  |
  * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |    "    |   !  |   @  |   #  |   $  |   %  |------|           |------|   ^  |   &  |   *  |   {  |   }  |   '    |
- * |---------+------+------+------+------+------|  "   |           |  '   |------+------+------+------+------+--------|
+ * |         |   !  |   @  |   #  |   $  |   %  |------|           |------|   ^  |   &  |   *  |   {  |   }  |        |
+ * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |         |      |      |      |      |      |      |           |      |      |      |      |   <  |   >  |        |
  * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |       |      |      |      |      |                                       |      |      |      |      |      |
@@ -152,8 +153,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [L_SYMB] = LAYOUT_ergodox(
   // Left Hand:
   RESET,   KC_F1,      KC_F2,    KC_F3,    KC_F4,    KC_F5,      KC_TRNS,
-  KC_TRNS, KC_BSLASH,  KC_GRAVE, KC_PIPE,  KC_PLUS,  KC_EQUAL,   KC_NO,
-  KC_DQUO, KC_EXLM,    KC_AT,    KC_HASH,  KC_DLR,   KC_PERCENT, /* 2U */
+  KC_TRNS, KC_BSLASH,  KC_GRAVE, KC_PIPE,  KC_PLUS,  KC_EQUAL,   KC_TRNS,
+  KC_TRNS, KC_EXLM,    KC_AT,    KC_HASH,  KC_DLR,   KC_PERCENT, /* 2U */
   KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,    KC_DQUO,
   KC_TRNS, KC_TRNS,    KC_TRNS,  KC_TRNS,  KC_TRNS,  /* NA */  /* NA */
 
@@ -164,9 +165,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // Right Hand:
   KC_TRNS, KC_F6,   KC_F7,    KC_F8,   KC_F9,   KC_F10,  KC_F11,
-  KC_NO,   KC_UNDS, KC_MINUS, KC_TILD, KC_LBRC, KC_RBRC, KC_F12,
+  KC_TRNS, KC_UNDS, KC_MINUS, KC_TILD, KC_LBRC, KC_RBRC, KC_F12,
   /* 2U */ KC_CIRC, KC_AMPR,  KC_ASTR, KC_LCBR, KC_RCBR, KC_QUOT,
-  KC_QUOT, KC_TRNS, KC_TRNS,  KC_TRNS, KC_LABK, KC_RABK, KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_LABK, KC_RABK, KC_TRNS,
   /* NA */ /* NA */ KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
 
   // Right Thumb Cluster:
@@ -233,7 +234,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | Pen 4  |      |      |      |      |      |      |           |      |      |      |      |      |      | Undo   |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | Pen 5|      |      |      |      |                                       |       |     |      |      |      |
+ *   |      |      |      |      |      |                                       |       |     |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -249,7 +250,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LCTRL,       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
   LSFT(KC_LCTRL), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, /* 2U */
   KC_LALT,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-  LSFT(KC_LALT),  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, /* NA */ /* NA */
+  KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, /* NA */ /* NA */
 
   // Left Thumb Cluster:
   KC_TRNS, KC_TRNS, /* NA */
@@ -283,6 +284,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
     return MACRODOWN(D(LCTL), T(X), U(LCTL), T(B), END);
   case M_CCR:
     return MACRODOWN(D(LCTL), T(C), U(LCTL), T(R), END);
+  case M_CX_TICK:
+    return MACRODOWN(D(LCTL), T(X), U(LCTL), T(GRAVE), END);
   case M_SCREEN_PREV:
     return MACRODOWN(D(LGUI), T(S), U(LGUI), T(H), END);
   case M_SCREEN_NEXT:
