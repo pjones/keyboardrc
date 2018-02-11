@@ -6,6 +6,7 @@
 /******************************************************************************/
 bool g_keystatus_sym = false;
 bool g_keystatus_num = false;
+bool g_draw_mode = false;
 
 /******************************************************************************/
 enum {
@@ -36,7 +37,8 @@ enum {
 /******************************************************************************/
 enum custom_keycodes {
   K_SYMB = SAFE_RANGE, // can always be here
-  K_NUMB
+  K_NUMB,
+  K_DRAW
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -67,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_DQUO,        KC_Q,  KC_W,   KC_E,   KC_R,      KC_T,    KC_MPLY,
   SFT_T(KC_TAB),  KC_A,  KC_S,   KC_D,   KC_F,      KC_G,    /* 2U */
   KC_LPRN,        KC_Z,  KC_X,   KC_C,   KC_V,      KC_B,    OSM(MOD_LGUI),
-  TT(L_DRAWING),  KC_NO, KC_NO,  KC_NO,  M(M_CALC), /* NA */ /* NA */
+  K_DRAW,         KC_NO, KC_NO,  KC_NO,  M(M_CALC), /* NA */ /* NA */
 
   // Left Thumb Cluster:
   /* NA */        M(M_CXB),   KC_NO,
@@ -278,13 +280,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Drawing
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | Pen 1  |      |      |      |      |      |Erase |           |      |      |      |      |      |      | On/Off |
+ * | Pen 1  |      |      |      |      |      |Erase |           |      |      |      |      |      |      | Clear  |
  * |--------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
- * | Pen 2  |      |      |      |      |      |      |           |      |      |      |      |      |      | Clear  |
+ * | Pen 2  |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | Pen 3  |      |      |      |      |      |------|           |------|      |      |      |      |      | Toggle |
+ * | Pen 3  |      |      |      |      |      |------|           |------|      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | Pen 4  |      |      |      |      |      |      |           |      |      |      |      |      |      | Undo   |
+ * | Pen 4  |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |      |      |      |      |      |                                       |       |     |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
@@ -298,28 +300,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [L_DRAWING] = LAYOUT_ergodox(
   // Left Hand:
-  KC_LSHIFT,      KC_A,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LALT(KC_LCTRL),
-  KC_LCTRL,       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-  LSFT(KC_LCTRL), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, /* 2U */
-  KC_LALT,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-  KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, /* NA */ /* NA */
+  KC_LSHIFT,      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   LALT(KC_LCTRL),
+  KC_LCTRL,       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO,
+  LSFT(KC_LCTRL), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /* 2U */
+  KC_LALT,        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO,
+  K_DRAW,         KC_NO, KC_NO, KC_NO, KC_NO, /* NA */ /* NA */
 
   // Left Thumb Cluster:
-  KC_TRNS, KC_TRNS, /* NA */
-  /* 2U */ /* 2U */ KC_TRNS,
-  KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_NO, KC_NO,     /* NA */
+  /* 2U */ /* 2U */ KC_NO,
+  KC_NO, KC_NO,     KC_NO,
 
   // Right Hand:
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F9,
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LSFT(KC_F9),
-  /* 2U */ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LCTL(KC_F9),
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F10,
-  /* NA */ /* NA */ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,
+  KC_NO,   KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, LSFT(KC_F9),
+  KC_NO,   KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+  /* 2U */ KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+  KC_NO,   KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_F10,
+  /* NA */ /* NA */ KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 
   // Right Thumb Cluster:
-  KC_TRNS, KC_TRNS, /* NA */
-  KC_TRNS, /* 2U */ /* 2U */
-  KC_TRNS, KC_TRNS, KC_TRNS
+  KC_NO, KC_NO,   /* NA */
+  KC_NO, /* 2U */ /* 2U */
+  KC_NO, KC_NO,   KC_NO
 ),
 };
 
@@ -348,17 +350,17 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  /*
-   * Symbols key and Numbers key.
-   *
-   * If the Numbers key is held down first and then the Symbols key is
-   * held down, use the Function Keys layer.
-   *
-   * If the Symbols key is held down first and then the Numbers key is
-   * held down, use the Movement Keys layer.
-   *
-   */
   switch (keycode) {
+    /*
+     * Symbols key and Numbers key.
+     *
+     * If the Numbers key is held down first and then the Symbols key is
+     * held down, use the Function Keys layer.
+     *
+     * If the Symbols key is held down first and then the Numbers key is
+     * held down, use the Movement Keys layer.
+     *
+     */
   case K_SYMB:
     if (record->event.pressed) {
       g_keystatus_sym = true;
@@ -386,6 +388,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       layer_off(L_MOVEMENT);
     }
     return false;
+
+    /*
+     * Toggle drawing mode.
+     */ 
+  case K_DRAW:
+    if (!record->event.pressed) {
+      if (g_draw_mode) {
+        g_draw_mode = false;
+        layer_off(L_DRAWING);
+        SEND_STRING(SS_DOWN(X_LCTRL));
+        SEND_STRING(SS_TAP(X_F9));
+        SEND_STRING(SS_UP(X_LCTRL));
+      } else {
+        g_draw_mode = true;
+        layer_on(L_DRAWING);
+        SEND_STRING(SS_TAP(X_F9));
+      }
+    }
   }
   
   return true;
@@ -395,6 +415,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void matrix_init_user(void) {
   g_keystatus_sym = false;
   g_keystatus_num = false;
+  g_draw_mode     = false;
 };
 
 
