@@ -25,6 +25,7 @@ enum {
   M_CALC,
   M_CXB,
   M_CCR,
+  M_CZCZ,
   M_CX_TICK,
   M_SCREEN_PREV,
   M_SCREEN_NEXT
@@ -51,12 +52,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |Tab/Sft |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |  ;   | Ent/Sft|
  * |--------+------+------+------+------+------| V-DN |           | V-UP |------+------+------+------+------+--------|
- * | ESC    |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |  /   | s-S-D  |
+ * | ESC    |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |  /   | C-z z  |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | DRAW |      |      |      | GUI  |                                       | PASS |      |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |C-x b |      |       |C-x ` | C-c r|
+ *                                        |C-xC-b|      |       |C-x ` | C-c r|
  *                                 ,------|------|------|       |------+--------+------.
  *                                 | Bspc |      | F+   |       | PgUp |        | Spc  |
  *                                 |      | Syms |------|       |------|  Nums  |      |
@@ -80,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   M(M_SCREEN_NEXT), KC_6,      KC_7,        KC_8,     KC_9,   KC_0,     KC_NO,
   KC_MNXT,          KC_Y,      KC_U,        KC_I,     KC_O,   KC_P,     KC_QUOT,
   /* 2U */          KC_H,      KC_J,        KC_K,     KC_L,   KC_SCLN,  SFT_T(KC_ENT),
-  KC_VOLU,          KC_N,      KC_M,        KC_COMM,  KC_DOT, KC_SLSH,  LGUI(LSFT(KC_D)),
+  KC_VOLU,          KC_N,      KC_M,        KC_COMM,  KC_DOT, KC_SLSH,  M(M_CZCZ),
   /* NA */          /* NA */   M(M_PASSWD), KC_NO,    KC_NO,  KC_NO,    KC_NO,
 
   // Right Thumb Cluster:
@@ -335,9 +336,11 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
   case M_CALC:
     return MACRODOWN(D(LGUI), T(SCLN), T(C), U(LGUI), END);
   case M_CXB:
-    return MACRODOWN(D(LCTL), T(X), U(LCTL), T(B), END);
+    return MACRODOWN(D(LCTL), T(X), T(B), U(LCTL), END);
   case M_CCR:
     return MACRODOWN(D(LCTL), T(C), U(LCTL), T(R), END);
+  case M_CZCZ:
+    return MACRODOWN(D(LCTL), T(Z), T(Z), U(LCTL), END);
   case M_CX_TICK:
     return MACRODOWN(D(LCTL), T(X), U(LCTL), T(GRAVE), END);
   case M_SCREEN_PREV:
