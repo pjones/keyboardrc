@@ -32,6 +32,11 @@ enum {
 };
 
 /******************************************************************************/
+enum {
+  TD_QUOTES = 1
+};
+
+/******************************************************************************/
 #define FONT_PLUS      LCTL(KC_PLUS)
 #define FONT_MINUS     LCTL(KC_MINUS)
 
@@ -48,11 +53,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |   1  |   2  |   3  |   4  |   5  |S-s h |           | S-s l|   6  |   7  |   8  |   9  |   0  |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |    "   |   Q  |   W  |   E  |   R  |   T  | Play |           | Next |   Y  |   U  |   I  |   O  |   P  |    '   |
+ * |  ESC   |   Q  |   W  |   E  |   R  |   T  | Play |           | Next |   Y  |   U  |   I  |   O  |   P  |  ' / " |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * |Tab/Sft |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |  ;   | Ent/Sft|
  * |--------+------+------+------+------+------| V-DN |           | V-UP |------+------+------+------+------+--------|
- * | ESC    |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |  /   | C-z z  |
+ * |        |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |  /   | C-z z  |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | DRAW |      |      |      | GUI  |                                       | PASS |      |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
@@ -67,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [L_BASE] = LAYOUT_ergodox(
   // Left Hand:
   KC_NO,          KC_1,  KC_2,   KC_3,   KC_4,          KC_5,    M(M_SCREEN_PREV),
-  KC_DQUO,        KC_Q,  KC_W,   KC_E,   KC_R,          KC_T,    KC_MPLY,
+  KC_ESC,         KC_Q,  KC_W,   KC_E,   KC_R,          KC_T,    KC_MPLY,
   SFT_T(KC_TAB),  KC_A,  KC_S,   KC_D,   KC_F,          KC_G,    /* 2U */
   KC_ESC,         KC_Z,  KC_X,   KC_C,   KC_V,          KC_B,    KC_VOLD,
   K_DRAW,         KC_NO, KC_NO,  KC_NO,  OSM(MOD_LGUI), /* NA */ /* NA */
@@ -79,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // Right Hand:
   M(M_SCREEN_NEXT), KC_6,      KC_7,        KC_8,     KC_9,   KC_0,     KC_NO,
-  KC_MNXT,          KC_Y,      KC_U,        KC_I,     KC_O,   KC_P,     KC_QUOT,
+  KC_MNXT,          KC_Y,      KC_U,        KC_I,     KC_O,   KC_P,     TD(TD_QUOTES),
   /* 2U */          KC_H,      KC_J,        KC_K,     KC_L,   KC_SCLN,  SFT_T(KC_ENT),
   KC_VOLU,          KC_N,      KC_M,        KC_COMM,  KC_DOT, KC_SLSH,  M(M_CZCZ),
   /* NA */          /* NA */   M(M_PASSWD), KC_NO,    KC_NO,  KC_NO,    KC_NO,
@@ -324,6 +329,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO, /* 2U */ /* 2U */
   KC_NO, KC_NO,   KC_NO
 ),
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_QUOTES] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, KC_DQUO)
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
