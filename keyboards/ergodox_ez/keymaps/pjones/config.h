@@ -13,7 +13,7 @@
 #define PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_TOGGLE          1
-#define TAPPING_TERM            100
+#define TAPPING_TERM            175
 
 #define ONESHOT_TAP_TOGGLE 2
 #define ONESHOT_TIMEOUT 1000
