@@ -11,7 +11,6 @@ const char* read_logo(void);
 
 /******************************************************************************/
 extern keymap_config_t keymap_config;
-extern rgblight_config_t rgblight_config;
 extern uint8_t is_master;
 
 /******************************************************************************/
