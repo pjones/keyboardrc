@@ -47,8 +47,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_WHEEL_DELAY    0
 
 #define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM_PER_KEY
+#define RETRO_TAPPING
 #define TAPPING_TOGGLE          1
-#define TAPPING_TERM            150
+#define TAPPING_TERM            175
 
 #define ONESHOT_TAP_TOGGLE 2
 #define ONESHOT_TIMEOUT 1000
