@@ -15,7 +15,6 @@ extern rgblight_config_t rgblight_config;
 extern uint8_t is_master;
 
 /******************************************************************************/
-int RGB_current_mode;
 bool g_draw_mode = false;
 char g_layer_str[24];
 
@@ -34,7 +33,7 @@ enum {
 
 /******************************************************************************/
 enum custom_keycodes {
-  K_DRAW = SAFE_RANGE, // can always be here
+  KC_DRAW = SAFE_RANGE, // can always be here
 };
 
 /******************************************************************************/
@@ -43,7 +42,7 @@ enum custom_keycodes {
 
 #define KC_SESC  LSFT_T(KC_ESC)
 #define KC_SQUO  RSFT_T(KC_QUOT)
-#define KC_FUNC  MO(L_FUNCKEYS)
+#define KC_FUNC  OSL(L_FUNCKEYS)
 #define KC_LGUI  OSM(MOD_LGUI)
 #define KC_BSPL1 LT(L_SYMB, KC_BSPC)
 #define KC_TABL4 LT(L_SYMB_ALT, KC_TAB)
@@ -51,14 +50,16 @@ enum custom_keycodes {
 #define KC_ENTL6 LT(L_MEDIA, KC_ENT)
 #define KC_GUIP  LGUI(KC_P)
 #define KC_RESET RESET
-#define KC_DRAW K_DRAW
+#define KC_SINRT LSFT(KC_INSERT)
 
-#define KC_GUI_D LGUI_T(KC_D)
+#define KC_GUI_A LGUI_T(KC_A)
 #define KC_CTR_F LCTL_T(KC_F)
 #define KC_CTR_J RCTL_T(KC_J)
-#define KC_GUI_K RGUI_T(KC_K)
+#define KC_GSCLN RGUI_T(KC_SCLN)
 #define KC_ALT_G LALT_T(KC_G)
 #define KC_ALT_H RALT_T(KC_H)
+#define KC_CPLUS LCTL(LSFT(KC_EQL))
+#define KC_CMINU LCTL(KC_MINUS)
 
 #define KC_PEN1 KC_LSHIFT
 #define KC_PEN2 KC_LCTRL
@@ -67,13 +68,24 @@ enum custom_keycodes {
 #define KC_PENE LALT(KC_LCTRL)
 #define KC_PENC LSFT(KC_F9)
 
+#define KC_CAF1 LCTL(LALT(KC_F1))
+#define KC_CAF2 LCTL(LALT(KC_F2))
+#define KC_CAF3 LCTL(LALT(KC_F3))
+#define KC_CAF4 LCTL(LALT(KC_F4))
+#define KC_CAF5 LCTL(LALT(KC_F5))
+#define KC_CAF6 LCTL(LALT(KC_F6))
+#define KC_CAF7 LCTL(LALT(KC_F7))
+#define KC_CAF8 LCTL(LALT(KC_F8))
+#define KC_CAF9 LCTL(LALT(KC_F9))
+#define KC_CAF10 LCTL(LALT(KC_F10))
+
 /******************************************************************************/
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_BASE] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
         TAB,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  CAPS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       SESC,     A,     S, GUI_D, CTR_F, ALT_G,                  ALT_H, CTR_J, GUI_K,     L,  SCLN,  SQUO,\
+       SESC, GUI_A,     S,     D, CTR_F, ALT_G,                  ALT_H, CTR_J,     K,     L, GSCLN,  SQUO, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        FUNC,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  FUNC,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
@@ -83,11 +95,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [L_SYMB] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX,  BSLS, XXXXX,  PIPE, PLUS,  EQUAL,                   UNDS, MINUS,  TILD,  LBRC,  RBRC, XXXXX,\
+      XXXXX,  BSLS, XXXXX,  PIPE, PLUS,  EQUAL,                   UNDS, MINUS,  TILD,  LBRC,  RBRC, SINRT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       XXXXX,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN, GRAVE,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, RESET, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX,  LABK,  RABK, XXXXX,\
+      XXXXX, RESET, XXXXX, XXXXX, XXXXX,  DRAW,                  XXXXX, XXXXX, XXXXX,  LABK,  RABK, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   _____, _____, _____,    _____, _____, _____ \
                               //`--------------------'  `--------------------'
@@ -107,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [L_MVMT] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+      XXXXX, XXXXX, XXXXX, XXXXX, CPLUS,  PGDN,                   PGUP, CMINU, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   LEFT,  DOWN,    UP, RIGHT, XXXXX, XXXXX, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -135,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       XXXXX,   F1,     F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+      XXXXX,  CAF1,  CAF2,  CAF3,  CAF4,  CAF5,                   CAF6,  CAF7,  CAF8,  CAF9, CAF10, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   _____, _____, _____,    _____, _____, _____ \
                               //`--------------------'  `--------------------'
@@ -218,7 +230,6 @@ void persistent_default_layer_set(uint16_t default_layer) {
 /******************************************************************************/
 void matrix_init_user(void) {
   g_draw_mode = false;
-  RGB_current_mode = rgblight_config.mode;
   iota_gfx_init(!has_usb());   // turns on the display
 }
 
@@ -265,7 +276,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     /*
      * Toggle drawing mode.
      */
-  case K_DRAW:
+  case KC_DRAW:
     if (!record->event.pressed) {
       if (g_draw_mode) {
         g_draw_mode = false;
@@ -279,6 +290,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_TAP(X_F9));
       }
     }
+    break;
   }
 
   return true;
