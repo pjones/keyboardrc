@@ -25,7 +25,6 @@ enum {
   L_NUMBERS  = 2,
   L_MVMT     = 3,
   L_SYMB_ALT = 4,
-  L_FUNCKEYS = 5,
   L_MEDIA    = 6,
   L_DRAWING  = 7
 };
@@ -50,6 +49,9 @@ enum custom_keycodes {
 #define KC_GUIP  LGUI(KC_P)
 #define KC_RESET RESET
 #define KC_SINRT LSFT(KC_INSERT)
+#define KC_SCRAT LGUI(KC_CIRC)
+#define KC_FULLW LGUI(KC_EXLM)
+#define KC_FOCUS LGUI(KC_ASTR)
 
 #define KC_GUI_A LGUI_T(KC_A)
 #define KC_CTR_F LCTL_T(KC_F)
@@ -60,6 +62,11 @@ enum custom_keycodes {
 #define KC_CPLUS LCTL(LSFT(KC_EQL))
 #define KC_CMINU LCTL(KC_MINUS)
 
+#define KC_SCRNNXT LGUI(LSFT(KC_0))
+#define KC_SCRNSWP LGUI(KC_BSLS)
+#define KC_TABPRE  LCTL(KC_LBRC)
+#define KC_TABNXT  LCTL(KC_RBRC)
+
 #define KC_PEN1 KC_LSHIFT
 #define KC_PEN2 KC_LCTRL
 #define KC_PEN3 LSFT(KC_LCTRL)
@@ -67,28 +74,17 @@ enum custom_keycodes {
 #define KC_PENE LALT(KC_LCTRL)
 #define KC_PENC LSFT(KC_F9)
 
-#define KC_CAF1 LCTL(LALT(KC_F1))
-#define KC_CAF2 LCTL(LALT(KC_F2))
-#define KC_CAF3 LCTL(LALT(KC_F3))
-#define KC_CAF4 LCTL(LALT(KC_F4))
-#define KC_CAF5 LCTL(LALT(KC_F5))
-#define KC_CAF6 LCTL(LALT(KC_F6))
-#define KC_CAF7 LCTL(LALT(KC_F7))
-#define KC_CAF8 LCTL(LALT(KC_F8))
-#define KC_CAF9 LCTL(LALT(KC_F9))
-#define KC_CAF10 LCTL(LALT(KC_F10))
-
 /******************************************************************************/
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_BASE] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        TAB,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  CAPS,\
+      FULLW,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  CAPS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        SESC, GUI_A,     S,     D, CTR_F, ALT_G,                  ALT_H, CTR_J,     K,     L, GSCLN,  SQUO, \
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       FUNC,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  FUNC,\
+      XXXXX,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH, SCRAT,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   LGUI, TABL4, BSPL1,    SPCL2, ENTL6,  GUIP                \
+                                SCRNNXT, TABL4, BSPL1,    SPCL2, ENTL6, TABNXT \
                               //`--------------------'  `--------------------'
   ),
 
@@ -98,21 +94,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       XXXXX,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN, GRAVE,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, RESET, XXXXX, XXXXX, XXXXX,  DRAW,                  XXXXX, XXXXX, XXXXX,  LABK,  RABK, XXXXX,\
+       DRAW, RESET, XXXXX, XXXXX,  PLUS, EQUAL,                   UNDS, MINUS, XXXXX,  LABK,  RABK, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,    _____, _____, _____ \
+                                  _____, _____, _____,    _____, _____, TABPRE \
                               //`--------------------'  `--------------------'
   ),
 
   [L_NUMBERS] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, MINUS, XXXXX, XXXXX, XXXXX, XXXXX,\
+        F11,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,   F12,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         TAB,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  DRAW,                  XXXXX, XXXXX,  COMM,   DOT,  SLSH, XXXXX,\
+       DRAW, XXXXX, XXXXX, XXXXX,  PLUS, EQUAL,                   UNDS, MINUS,  COMM,   DOT,  SLSH, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,    _____, _____, _____ \
+                                SCRNSWP, _____, _____,    _____, _____, _____ \
                               //`--------------------'  `--------------------'
   ),
 
@@ -140,17 +136,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                               //`--------------------'  `--------------------'
   ),
 
-  [L_FUNCKEYS] = LAYOUT_kc( \
-  //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX,  F11,   F12,   F13,   F14,    F15,                    F16,  F17,   F18,   F19,    F20, XXXXX,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX,   F1,     F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10, XXXXX,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX,  CAF1,  CAF2,  CAF3,  CAF4,  CAF5,                   CAF6,  CAF7,  CAF8,  CAF9, CAF10, XXXXX,\
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,    _____, _____, _____ \
-                              //`--------------------'  `--------------------'
-  ),
 
   [L_MEDIA] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
@@ -160,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  XXXXX, XXXXX, XXXXX,    XXXXX, XXXXX, XXXXX \
+                                  XXXXX, XXXXX,   DEL,    XXXXX, XXXXX, XXXXX \
                               //`--------------------'  `--------------------'
   ),
 
@@ -190,10 +175,6 @@ const char* read_layer_state(void) {
 
   case L_SYMB_ALT:
     snprintf(g_layer_str, sizeof(g_layer_str), "Layer: AltSyms");
-    break;
-
-  case L_FUNCKEYS:
-    snprintf(g_layer_str, sizeof(g_layer_str), "Layer: F-Keys");
     break;
 
   case L_MEDIA:
