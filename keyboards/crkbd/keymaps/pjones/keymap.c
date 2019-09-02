@@ -52,6 +52,7 @@ enum custom_keycodes {
 #define KC_SCRAT LGUI(KC_CIRC)
 #define KC_FULLW LGUI(KC_EXLM)
 #define KC_FOCUS LGUI(KC_ASTR)
+#define KC_SINGW LGUI(LALT(KC_8))
 
 #define KC_GUI_A LGUI_T(KC_A)
 #define KC_CTR_F LCTL_T(KC_F)
@@ -90,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [L_SYMB] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX,  BSLS, XXXXX,  PIPE, PLUS,  EQUAL,                   UNDS, MINUS,  TILD,  LBRC,  RBRC, SINRT,\
+      SINGW,  BSLS, XXXXX,  PIPE, PLUS,  EQUAL,                   UNDS, MINUS,  TILD,  LBRC,  RBRC, SINRT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       XXXXX,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN, GRAVE,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
