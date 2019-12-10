@@ -40,34 +40,21 @@ enum custom_keycodes {
 
 #define KC_SESC  LSFT_T(KC_ESC)
 #define KC_SQUO  RSFT_T(KC_QUOT)
-#define KC_FUNC  OSL(L_FUNCKEYS)
-#define KC_LGUI  OSM(MOD_LGUI)
 #define KC_BSPL1 LT(L_SYMB, KC_BSPC)
-#define KC_TABL4 LT(L_SYMB_ALT, KC_TAB)
 #define KC_SPCL2 LT(L_NUMBERS, KC_SPC)
-#define KC_ENTL6 LT(L_MEDIA, KC_ENT)
-#define KC_GUIP  LGUI(KC_P)
 #define KC_RESET RESET
 #define KC_SINRT LSFT(KC_INSERT)
 #define KC_SCRAT LGUI(KC_CIRC)
 #define KC_FULLW LGUI(KC_EXLM)
-#define KC_FOCUS LGUI(KC_ASTR)
 #define KC_SINGW LGUI(LALT(KC_8))
-#define KC_LEADR LCTL(LALT(KC_COMM))
-
-#define KC_GUI_A LGUI_T(KC_A)
-#define KC_CTR_F LCTL_T(KC_F)
-#define KC_CTR_J RCTL_T(KC_J)
-#define KC_GSCLN RGUI_T(KC_SCLN)
-#define KC_ALT_G LALT_T(KC_G)
-#define KC_ALT_H RALT_T(KC_H)
 #define KC_CPLUS LCTL(LSFT(KC_EQL))
 #define KC_CMINU LCTL(KC_MINUS)
-
 #define KC_SCRNNXT LGUI(LSFT(KC_0))
 #define KC_SCRNSWP LGUI(KC_BSLS)
 #define KC_TABPRE  LCTL(KC_LBRC)
 #define KC_TABNXT  LCTL(KC_RBRC)
+#define KC_CTAB LCTL_T(KC_TAB)
+#define KC_CENT LCTL_T(KC_ENT)
 
 #define KC_PEN1 KC_LSHIFT
 #define KC_PEN2 KC_LCTRL
@@ -82,11 +69,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
       FULLW,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  CAPS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       SESC, GUI_A,     S,     D, CTR_F, ALT_G,                  ALT_H, CTR_J,     K,     L, GSCLN,  SQUO, \
+       SESC,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  SQUO,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH, SCRAT,\
+       LGUI,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RGUI,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                SCRNNXT, TABL4, BSPL1,    SPCL2, ENTL6, TABNXT \
+                                   LALT,  CTAB, BSPL1,    SPCL2,  CENT,  RALT \
                               //`--------------------'  `--------------------'
   ),
 
@@ -94,11 +81,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
       SINGW,  BSLS, XXXXX,  PIPE, PLUS,  EQUAL,                   UNDS, MINUS,  TILD,  LBRC,  RBRC, SINRT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      LEADR,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN, GRAVE,\
+      _____, EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,  GRAVE,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       DRAW, RESET, XXXXX, XXXXX,  PLUS, EQUAL,                   UNDS, MINUS, XXXXX,  LABK,  RABK, XXXXX,\
+      XXXXX, RESET, XXXXX, XXXXX,  PLUS, EQUAL,                   UNDS, MINUS, XXXXX,  LABK,  RABK, SCRAT,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,    _____, _____, TABPRE \
+                                  _____, _____, _____,    _____, _____, SCRNSWP \
                               //`--------------------'  `--------------------'
   ),
 
@@ -106,48 +93,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
         F11,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,   F12,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      LEADR,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0, LEADR,\
+      _____,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0, _____,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       DRAW, XXXXX, XXXXX, XXXXX,  PLUS, EQUAL,                   UNDS, MINUS,  COMM,   DOT,  SLSH, XXXXX,\
+      XXXXX, XXXXX, XXXXX, XXXXX,  PLUS, EQUAL,                   UNDS, MINUS,  COMM,   DOT,  SLSH, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                SCRNSWP, _____, _____,    _____, _____, _____ \
+                                 SCRNNXT,_____, _____,    _____, _____, _____                    \
                               //`--------------------'  `--------------------'
   ),
 
   [L_MVMT] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX, XXXXX, XXXXX, CPLUS,  PGDN,                   PGUP, CMINU, XXXXX, XXXXX, XXXXX, XXXXX,\
+      XXXXX, XXXXX, XXXXX, XXXXX, CPLUS,  PGDN,                   PGUP, CMINU, XXXXX,  LCBR,  RCBR,   DEL,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   LEFT,  DOWN,    UP, RIGHT, XXXXX, XXXXX, \
+     TABPRE,  VOLD,  VOLU,  MPRV,  MPLY,  MNXT,                   LEFT,  DOWN,    UP, RIGHT, XXXXX,TABNXT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   _____, _____, _____,    _____, _____, _____ \
-                              //`--------------------'  `--------------------'
-  ),
-
-  [L_SYMB_ALT] = LAYOUT_kc( \
-  //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX,  LBRC,  RBRC, XXXXX,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX,  LCBR,  RCBR, XXXXX,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX,  LABK,  RABK, XXXXX,\
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,    _____, _____, _____ \
-                              //`--------------------'  `--------------------'
-  ),
-
-
-  [L_MEDIA] = LAYOUT_kc( \
-  //,-----------------------------------------.                ,-----------------------------------------.
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX,  VOLD,  VOLU,  MPRV,  MPLY,  MNXT,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  XXXXX, XXXXX,   DEL,    XXXXX, XXXXX, XXXXX \
                               //`--------------------'  `--------------------'
   ),
 
