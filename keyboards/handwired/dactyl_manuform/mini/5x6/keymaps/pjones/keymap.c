@@ -4,66 +4,76 @@
 static uint8_t caps_state = 0;
 
 /******************************************************************************/
+enum custom_keycodes {
+  PJ_LOCK = SAFE_RANGE, // can always be here
+};
+
+/******************************************************************************/
 // Numbered only so I remember:
 enum {
   L_BASE     = 0,
   L_RAISE    = 1,
   L_LOWER    = 2,
-  L_BLANK    = 3
+  L_MEDIA    = 3,
+  L_BLANK    = 4
 };
 
 /******************************************************************************/
-#define PJ_FULLW  LGUI(KC_EXLM)
-#define PJ_SINGW  LGUI(LALT(KC_8))
-#define PJ_SCRAT  LGUI(KC_CIRC)
-#define PJ_SINRT  LSFT(KC_INSERT)
-#define PJ_TABPRE LCTL(KC_LBRC)     // Previous tab.
-#define PJ_TABNXT LCTL(KC_RBRC)     // Next tab.
-#define PJ_SCRN   LGUI(LSFT(KC_0))  // Screen next.
-#define PJ_SCRS   LGUI(KC_BSLS)     // Swap screens.
-#define PJ_C_PLUS LCTL(LSFT(KC_EQL))
-#define PJ_C_MIN  LCTL(KC_MINUS)
+#define PJ_SINRT  LSFT(KC_INSERT)  // Shift insert.
+#define PJ_SCRN   LGUI(LSFT(KC_0)) // Screen next.
+
+// Home Row Modifiers:
+#define PJ_A    LALT_T(KC_A)    // A or Alt
+#define PJ_F    LCTL_T(KC_F)    // F or Control
+#define PJ_J    RCTL_T(KC_J)    // J or Control
+#define PJ_SCLN RALT_T(KC_SCLN) // Semicolon or Alt
 
 // Left Thumbs:
-#define PJ_LALT   LALT_T(KC_MPLY)
-#define PJ_LCTL   LCTL_T(KC_TAB)
-#define PJ_LSFT   LSFT_T(KC_BSPC)
-#define PJ_RAISE  OSL(L_RAISE)
-#define PJ_LGUI   LGUI_T(KC_LBRC)
+#define PJ_LGUI   LGUI_T(KC_LBRC)      // Left square bracket or left GUI
+#define PJ_LSFT   LSFT_T(KC_BSPC)      // Left shift or backspace.
+#define PJ_MEDIA  LT(L_MEDIA, KC_MPLY) // Media play or go to media layer
+#define PJ_RAISE  LT(L_RAISE, KC_TAB)  // Tab or go to "raise" layer
 
 // Right Thumbs:
-#define PJ_RALT   RALT_T(KC_MNXT)
-#define PJ_RCTL   RCTL_T(KC_ENT)
-#define PJ_RSFT   RSFT_T(KC_SPC)
-#define PJ_LOWER  OSL(L_LOWER)
-#define PJ_RGUI   RGUI_T(KC_RBRC)
+#define PJ_LOWER  LT(L_LOWER, KC_ENT) // Enter or go to "lower" layer
+#define PJ_RSFT   RSFT_T(KC_SPC)      // Space or right shift
+#define PJ_RGUI   RGUI_T(KC_RBRC)     // Right square bracket or right GUI
 
 /******************************************************************************/
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [L_BASE] = LAYOUT_5x6(
-     KC_GRAVE , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,       KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_MINUS ,
+     KC_TILD  , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,       KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_MINUS ,
      KC_BSLASH, KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,       KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_EQL  ,
-     KC_ESC   , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,       KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , KC_QUOT  ,
+     KC_ESC   , PJ_A     , KC_S     , KC_D     , PJ_F     , KC_G     ,       KC_H     , PJ_J     , KC_K     , KC_L     , PJ_SCLN  , KC_QUOT  ,
      KC_LCBR  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,       KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_RCBR  ,
-                KC_END   , KC_HOME  , PJ_RAISE , PJ_LCTL  , PJ_LSFT  ,       PJ_RSFT  , PJ_RCTL  , PJ_LOWER , KC_PGDN  , KC_PGUP  ,
-                                                 PJ_LALT  , PJ_LGUI  ,       PJ_RGUI  , PJ_RALT
+                KC_END   , KC_HOME  , PJ_RAISE , PJ_RAISE , PJ_LSFT  ,       PJ_RSFT  , PJ_LOWER , PJ_LOWER , KC_PGDN  , KC_PGUP  ,
+                                                 PJ_MEDIA , PJ_LGUI  ,       PJ_RGUI  , _______
   ),
 
   [L_RAISE] = LAYOUT_5x6(
-     _______  , KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    ,       KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , _______  ,
+     _______  , _______  , _______  , _______  , _______  , _______  ,       KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , PJ_LOCK  ,
      _______  , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , PJ_SINRT , _______  ,
-     _______  , KC_VOLD  , KC_VOLU  , KC_MPRV  , KC_MPLY  , KC_MNXT  ,       KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , _______  , _______  ,
-     RESET    , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
-                _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  ,
-                                                 _______  , _______  ,       _______  , _______
+     KC_SYSREQ, _______  , _______  , _______  , _______  , _______  ,       KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , KC_PIPE  , KC_GRAVE ,
+     RESET    , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , KC_BSLASH, _______  ,
+                _______  , _______  , _______  , _______  , _______  ,       KC_MINUS , KC_UNDS  , _______  , _______  , _______  ,
+                                                 _______  , _______  ,       KC_GT    , _______
   ),
 
   [L_LOWER] = LAYOUT_5x6(
-     PJ_FULLW , KC_F11   , KC_F12   , KC_F13   , KC_F14   , KC_F15   ,       _______  , _______  , _______  , _______  , _______  , _______  ,
-     PJ_SINGW , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
-     KC_CAPS  , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
+     _______  , KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    ,       _______  , _______  , _______  , _______  , _______  , _______  ,
+     _______  , KC_F11   , KC_F12   , KC_F13   , KC_F14   , KC_F15   ,       _______  , _______  , _______  , _______  , _______  , _______  ,
+     KC_CAPS  , _______  , _______  , KC_DEL   , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
      PJ_SCRN  , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
+                _______  , _______  , _______  , KC_PLUS  , KC_EQL   ,       _______  , _______  , _______  , _______  , _______  ,
+                                                 _______  , KC_LT    ,       _______  , _______
+  ),
+
+  [L_MEDIA] = LAYOUT_5x6(
+     _______  , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
+     _______  , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
+     _______  , _______  , _______  , _______  , _______  , _______  ,       KC_MPRV  , KC_VOLD  , KC_VOLU  , KC_MNXT  , KC_MSEL  , _______  ,
+     _______  , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
                 _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  ,
                                                  _______  , _______  ,       _______  , _______
   ),
@@ -122,8 +132,42 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+  case PJ_LOCK:
+    if (!record->event.pressed) {
+      SEND_STRING(SS_DOWN(X_LCTRL));
+      SEND_STRING(SS_DOWN(X_LALT));
+      SEND_STRING(SS_TAP(X_L));
+      SEND_STRING(SS_UP(X_LALT));
+      SEND_STRING(SS_UP(X_LCTRL));
+    }
+    break;
+  }
   return true;
 }
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+  case PJ_A:
+  case PJ_F:
+  case PJ_J:
+  case PJ_SCLN:
+    return 250;
+  default:
+    return TAPPING_TERM;
+  }
+}
+
+bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+  case PJ_LSFT:
+  case PJ_RSFT:
+    return true;
+  default:
+    return false;
+  }
+}
+
 
 // Local variables:
 //   eval: (whitespace-mode -1)

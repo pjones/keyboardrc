@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // wiring of each half
 #define MATRIX_COL_PINS { D1, D4, E6, B4, B6, B2 }
 #define MATRIX_ROW_PINS { B3, B1, F7, F6, F5, F4 }
+#define DIODE_DIRECTION COL2ROW
 
 // WS2812 RGB LED strip input and number of LEDs
 /* #define RGB_DI_PIN D3 */
