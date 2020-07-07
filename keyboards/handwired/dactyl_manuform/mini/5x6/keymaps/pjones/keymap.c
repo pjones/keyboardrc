@@ -6,6 +6,7 @@ static uint8_t caps_state = 0;
 /******************************************************************************/
 enum custom_keycodes {
   PJ_LOCK = SAFE_RANGE, // can always be here
+  PJ_SYSRQ,
 };
 
 /******************************************************************************/
@@ -54,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_RAISE] = LAYOUT_5x6(
      _______  , _______  , _______  , _______  , _______  , _______  ,       KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , PJ_LOCK  ,
      _______  , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , PJ_SINRT , _______  ,
-     KC_SYSREQ, _______  , _______  , _______  , _______  , _______  ,       KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , KC_PIPE  , KC_GRAVE ,
+     PJ_SYSRQ , _______  , _______  , _______  , _______  , _______  ,       KC_LEFT  , KC_DOWN  , KC_UP    , KC_RIGHT , KC_PIPE  , KC_GRAVE ,
      RESET    , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , KC_BSLASH, _______  ,
                 _______  , _______  , _______  , _______  , _______  ,       KC_MINUS , KC_UNDS  , _______  , _______  , _______  ,
                                                  _______  , _______  ,       KC_GT    , _______
@@ -132,6 +133,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  static uint8_t sysrq_state = 0;
+
   switch (keycode) {
   case PJ_LOCK:
     if (!record->event.pressed) {
@@ -142,6 +145,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       SEND_STRING(SS_UP(X_LCTRL));
     }
     break;
+  case PJ_SYSRQ:
+    if (!record->event.pressed) {
+      if (sysrq_state == 0) {
+        sysrq_state = 1;
+        clear_mods();
+        add_mods(MOD_LALT);
+        add_key(KC_PSCREEN);
+      } else {
+        sysrq_state = 0;
+        clear_mods();
+        del_key(KC_PSCREEN);
+      }
+      send_keyboard_report();
+    }
+    return false;
   }
   return true;
 }
