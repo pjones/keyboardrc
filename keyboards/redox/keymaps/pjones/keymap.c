@@ -46,15 +46,16 @@ enum {
 // Window manager keys:
 #define PJ_XM1 LGUI(KC_LCBR)
 #define PJ_XM2 LGUI(KC_RCBR)
+#define PJ_XM3 LGUI(KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [L_BASE] = LAYOUT(
      KC_TILD , KC_1    , KC_2    , KC_3    , KC_4    , KC_5    ,                                         KC_6    , KC_7    , KC_8    , KC_9    , KC_0    , KC_MINUS,
      KC_BSLS , KC_Q    , KC_W    , KC_E    , KC_R    , KC_T    , _______ ,                     _______ , KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_EQL  ,
-     KC_ESC  , PJ_A    , KC_S    , KC_D    , PJ_F    , KC_G    , _______ ,                     _______ , KC_H    , PJ_J    , KC_K    , KC_L    , PJ_SCLN , KC_QUOT ,
-     PJ_XM1  , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    , PJ_MEDIA, PJ_LGUI , PJ_RGUI , _______ , KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , PJ_XM2  ,
-     _______ , _______ , _______ , _______ ,     _______       , PJ_RAISE, PJ_LSFT , PJ_RSFT , PJ_LOWER ,     _______       , _______ , _______ , _______ , _______
+     KC_ESC  , PJ_A    , KC_S    , KC_D    , PJ_F    , KC_G    , _______ ,                     PJ_XM3  , KC_H    , PJ_J    , KC_K    , KC_L    , PJ_SCLN , KC_QUOT ,
+     PJ_XM1  , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    , PJ_LGUI , PJ_MEDIA, PJ_RGUI , PJ_RGUI , KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , PJ_XM2  ,
+     _______ , _______ , _______ , _______ ,     KC_LGUI       , PJ_RAISE, PJ_LSFT , PJ_RSFT , PJ_LOWER,     KC_RGUI       , _______ , _______ , _______ , _______
   ),
 
   [L_RAISE] = LAYOUT(
