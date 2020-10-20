@@ -45,6 +45,10 @@ enum {
 // High function keys:
 #define PJ_APP7 KC_F16
 
+// Window manager keys:
+#define PJ_XM1 LGUI(KC_LCBR)
+#define PJ_XM2 LGUI(KC_RCBR)
+
 /******************************************************************************/
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -52,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_TILD  , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,       KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_MINUS ,
      KC_BSLASH, KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,       KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_EQL  ,
      KC_ESC   , PJ_A     , KC_S     , KC_D     , PJ_F     , KC_G     ,       KC_H     , PJ_J     , KC_K     , KC_L     , PJ_SCLN  , KC_QUOT  ,
-     KC_LCBR  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,       KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_RCBR  ,
+     PJ_XM1   , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,       KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , PJ_XM2   ,
                 KC_END   , KC_HOME  , _______  , PJ_RAISE , PJ_LSFT  ,       PJ_RSFT  , PJ_LOWER , _______  , KC_PGDN  , KC_PGUP  ,
                                                  PJ_MEDIA , PJ_LGUI  ,       PJ_RGUI  , _______
   ),
@@ -69,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_LOWER] = LAYOUT_5x6(
      _______  , KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    ,       KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , _______  ,
      _______  , KC_F11   , KC_F12   , KC_F13   , KC_F14   , KC_F15   ,       _______  , _______  , _______  , _______  , _______  , _______  ,
-     KC_CAPS  , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
+     KC_CAPS  , _______  , _______  , KC_DEL   , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
      _______  , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
                 _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  ,
                                                  _______  , _______  ,       _______  , _______
@@ -78,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_ADJUST] = LAYOUT_5x6(
      _______  , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
      _______  , _______  , _______  , _______  , RESET    , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
-     _______  , _______  , PJ_SYSRQ , KC_DEL   , _______  , _______  ,       _______  , _______  , _______  , PJ_LOCK  , _______  , _______  ,
+     _______  , _______  , PJ_SYSRQ , _______  , _______  , _______  ,       _______  , _______  , _______  , PJ_LOCK  , _______  , _______  ,
      _______  , _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  , _______  ,
                 _______  , _______  , _______  , _______  , _______  ,       _______  , _______  , _______  , _______  , _______  ,
                                                  _______  , _______  ,       _______  , _______
