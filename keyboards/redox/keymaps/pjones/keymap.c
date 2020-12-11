@@ -53,11 +53,11 @@ enum {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [L_BASE] = LAYOUT(
-     KC_TILD , KC_1    , KC_2    , KC_3    , KC_4    , KC_5    ,                                         KC_6    , KC_7    , KC_8    , KC_9    , KC_0    , KC_MINUS,
-     KC_BSLS , KC_Q    , KC_W    , KC_E    , KC_R    , KC_T    , _______ ,                     _______ , KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_EQL  ,
-     KC_ESC  , PJ_A    , KC_S    , KC_D    , PJ_F    , PJ_G    , _______ ,                     PJ_XM3  , PJ_H    , PJ_J    , KC_K    , KC_L    , PJ_SCLN , KC_QUOT ,
-     PJ_XM1  , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    , PJ_LGUI , PJ_MEDIA, PJ_RGUI , PJ_RGUI , KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , PJ_XM2  ,
-     _______ , _______ , _______ , _______ ,     KC_LGUI       , PJ_RAISE, PJ_LSFT , PJ_RSFT , PJ_LOWER,     KC_RGUI       , _______ , _______ , _______ , _______
+     KC_TILD , KC_1    , KC_2    , KC_3    , KC_4    , KC_5    ,                                         KC_6    , KC_7    , KC_8    , KC_9    , KC_0    , KC_BSLS ,
+     KC_BSLS , KC_Q    , KC_W    , KC_E    , KC_R    , KC_T    , _______ ,                     _______ , KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_PIPE ,
+     KC_ESC  , PJ_A    , KC_S    , KC_D    , PJ_F    , PJ_G    , PJ_MEDIA,                     PJ_XM3  , PJ_H    , PJ_J    , KC_K    , KC_L    , PJ_SCLN , KC_QUOT ,
+     PJ_XM1  , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    , KC_UNDS,  KC_MINS , KC_PLUS , KC_EQL  , KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , PJ_XM2  ,
+     _______ , _______ , _______ , _______ ,     KC_LBRC       , PJ_RAISE, PJ_LSFT , PJ_RSFT , PJ_LOWER,     KC_RBRC       , _______ , _______ , _______ , _______
   ),
 
   [L_RAISE] = LAYOUT(
