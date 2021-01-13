@@ -53,10 +53,10 @@ enum {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [L_BASE] = LAYOUT(
-     KC_TILD , KC_1    , KC_2    , KC_3    , KC_4    , KC_5    ,                                         KC_6    , KC_7    , KC_8    , KC_9    , KC_0    , KC_BSLS ,
-     KC_BSLS , KC_Q    , KC_W    , KC_E    , KC_R    , KC_T    , _______ ,                     _______ , KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_PIPE ,
+     KC_GRV  , KC_1    , KC_2    , KC_3    , KC_4    , KC_5    ,                                         KC_6    , KC_7    , KC_8    , KC_9    , KC_0    , KC_BSLS ,
+     KC_TILD , KC_Q    , KC_W    , KC_E    , KC_R    , KC_T    , _______ ,                     _______ , KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_PIPE ,
      KC_ESC  , PJ_A    , KC_S    , KC_D    , PJ_F    , PJ_G    , PJ_MEDIA,                     PJ_XM3  , PJ_H    , PJ_J    , KC_K    , KC_L    , PJ_SCLN , KC_QUOT ,
-     PJ_XM1  , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    , KC_UNDS,  KC_MINS , KC_PLUS , KC_EQL  , KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , PJ_XM2  ,
+     PJ_XM1  , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    , KC_LEAD , KC_MINS , KC_EQL  , KC_PLUS , KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , PJ_XM2  ,
      _______ , _______ , _______ , _______ ,     KC_LBRC       , PJ_RAISE, PJ_LSFT , PJ_RSFT , PJ_LOWER,     KC_RBRC       , _______ , _______ , _______ , _______
   ),
 
@@ -100,6 +100,69 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______ , _______ , _______ , _______ ,     _______       , _______ , _______ , _______ , _______ ,     _______       , _______ , _______ , _______ , _______
   )
 };
+
+LEADER_EXTERNS();
+
+uint16_t num_to_f_key(uint16_t seq1, uint16_t seq2) {
+  if (seq1 >= KC_1 && seq2 <= KC_0) {
+    uint16_t f_key = KC_F1 + (seq1 - KC_1);
+
+    // Promote F1-F10 to F11-F20
+    if (seq2 == seq1 && seq2 != 0) {
+      f_key += KC_F11 - KC_F1;
+    }
+
+    return f_key;
+  } else {
+    return 0;
+  }
+}
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    // Translate number keys to "F" keys:
+    if (leader_sequence[0] >= KC_1 && leader_sequence[0] <= KC_0) {
+      uint16_t f_key = num_to_f_key(leader_sequence[0], leader_sequence[1]);
+
+      bool with_control =
+        leader_sequence[1] == KC_C ||
+        leader_sequence[2] == KC_C ||
+        leader_sequence[3] == KC_C;
+
+      bool with_alt =
+        leader_sequence[1] == KC_A ||
+        leader_sequence[2] == KC_A ||
+        leader_sequence[3] == KC_A;
+
+      if (with_control) register_code(KC_LCTRL);
+      if (with_alt) register_code(KC_LALT);
+      register_code(f_key);
+      unregister_code(f_key);
+      if (with_alt) unregister_code(KC_LALT);
+      if (with_control) unregister_code(KC_LCTRL);
+    }
+
+    // Release key grab from some VNC tools by sending control+alt.
+    // Any other keys pressed in the sequence are also sent.
+    else if (leader_sequence[0] == KC_ESC) {
+      register_code(KC_LCTRL);
+      register_code(KC_LALT);
+
+      for (uint8_t i=1; i<4; ++i) {
+        if (leader_sequence[i] != 0) {
+          register_code(leader_sequence[i]);
+          unregister_code(leader_sequence[i]);
+        }
+      }
+
+      unregister_code(KC_LALT);
+      unregister_code(KC_LCTRL);
+    }
+  }
+}
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, L_LOWER, L_RAISE, L_ADJUST);
