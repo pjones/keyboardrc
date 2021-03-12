@@ -232,5 +232,5 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 //   eval: (whitespace-mode -1)
 //   eval: (auto-fill-mode -1)
 //   eval: (flycheck-mode -1)
-//   projectile-project-compilation-cmd: "nix-shell --run 'sudo make redox:pjones:dfu'"
+//   projectile-project-compilation-cmd: "nix-shell --run 'make redox:pjones:avrdude'"
 // End:
