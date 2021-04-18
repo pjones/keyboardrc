@@ -35,6 +35,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define ONESHOT_TAP_TOGGLE 2
 #define ONESHOT_TIMEOUT 1000
-
-#define LEADER_TIMEOUT 750
-#define LEADER_PER_KEY_TIMING
