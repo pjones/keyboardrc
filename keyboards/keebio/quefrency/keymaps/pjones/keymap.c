@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [L_RAISE] = LAYOUT_65_with_macro(
-    RGB_TOG, RGB_MOD, _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, KC_DEL,  _______, \
+    RGB_TOG, RGB_MOD, _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, KC_DEL,  LCTL(KC_BRIU), \
     RGB_M_SW,RGB_M_B, _______, KC_ESC,  _______, _______, RESET,   _______, _______, _______, SFT_INS, _______, _______, KC_PIPE, KC_BSLS, _______,          _______, \
     RGB_SAI, RGB_SAD, _______, _______, _______, KC_CAPS, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,_______, _______, _______,                   KC_POWER, \
     RGB_HUI, RGB_HUD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______, \
