@@ -83,6 +83,30 @@ bool encoder_update_user(uint8_t _index, bool clockwise) {
   return true;
 }
 
+#ifdef TAPPING_TERM_PER_KEY
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *_record) {
+  switch (keycode) {
+  case SFT_D:
+  case SFT_K:
+    return TAPPING_TERM - 20;
+  default:
+    return TAPPING_TERM;
+  }
+}
+#endif
+
+#ifdef PERMISSIVE_HOLD_PER_KEY
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *_record) {
+  switch (keycode) {
+  case GUI_S:
+  case GUI_L:
+    return false;
+  default:
+    return true;
+  }
+}
+#endif
+
 // Local variables:
 //   eval: (whitespace-mode -1)
 //   eval: (auto-fill-mode -1)
