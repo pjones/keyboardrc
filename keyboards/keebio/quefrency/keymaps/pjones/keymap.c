@@ -14,7 +14,7 @@ enum custom_keycodes {
 
 #define NO_KEY   KC_NO // Doesn't map to a key on this board.
 #define SFT_INS  LSFT(KC_INSERT)
-#define MED_LCK  LT(L_MEDIA, KC_CAPS)
+#define MED_GRV  LT(L_MEDIA, KC_GRV)
 #define ALT_A    LALT_T(KC_A)
 #define GUI_S    LGUI_T(KC_S)
 #define SFT_D    LSFT_T(KC_D)
@@ -25,14 +25,14 @@ enum custom_keycodes {
 #define SFT_K    RSFT_T(KC_K)
 #define GUI_L    RGUI_T(KC_L)
 #define ALT_SCLN LALT_T(KC_SCLN)
-#define SFT_GRV  LSFT_T(KC_GRV)
+#define SFT_CAP  LSFT_T(KC_CAPS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_BASE] = LAYOUT_65_with_macro(
     KC_F1,   KC_F2,   KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  NO_KEY,  KC_BSPC, KC_MPLY, \
     KC_F3,   KC_F4,   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,          KC_MNXT, \
-    KC_F5,   KC_F6,   MED_LCK, ALT_A,   GUI_S,   SFT_D,   CTL_F,   RSE_G,   RSE_H,   CTL_J,   SFT_K,   GUI_L,   ALT_SCLN,KC_QUOT, KC_ENT,                    KC_STOP, \
-    KC_F7,   KC_F8,   SFT_GRV, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,          KC_UP,            KC_PSCR, \
+    KC_F5,   KC_F6,   MED_GRV, ALT_A,   GUI_S,   SFT_D,   CTL_F,   RSE_G,   RSE_H,   CTL_J,   SFT_K,   GUI_L,   ALT_SCLN,KC_QUOT, KC_ENT,                    KC_STOP, \
+    KC_F7,   KC_F8,   SFT_CAP, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,          KC_UP,            KC_PSCR, \
     KC_F11,  KC_F12,  KC_LCTL, KC_LALT, KC_LGUI, KC_INS,  KC_BSPC,          NO_KEY,  KC_SPC,  KC_RGUI, KC_RALT, KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT
   ),
 
