@@ -1,2 +1,4 @@
 CONSOLE_ENABLE = no        # Console for debug
 BACKLIGHT_ENABLE = no
+TAP_DANCE_ENABLE = yes
+ENCODER_MAP_ENABLE = yes
